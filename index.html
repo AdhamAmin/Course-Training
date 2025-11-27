@@ -178,6 +178,24 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header-placeholder').innerHTML = data;
+                // Highlight active nav link based on current page
+                const navLinks = document.querySelectorAll('#header-placeholder .nav-link');
+                navLinks.forEach(link => {
+                    try {
+                        const linkHref = new URL(link.href);
+                        if (linkHref.pathname === location.pathname || linkHref.pathname === location.pathname.split('/').pop()) {
+                            link.classList.add('active');
+                            link.setAttribute('aria-current', 'page');
+                        }
+                    } catch (e) {
+                        // fallback for relative links
+                        const href = link.getAttribute('href');
+                        if (href && (href === location.pathname || href === location.pathname.split('/').pop() || (location.pathname === '/' && href === 'index.html'))) {
+                            link.classList.add('active');
+                            link.setAttribute('aria-current', 'page');
+                        }
+                    }
+                });
             })
             .catch(error => console.error('Error loading header:', error));
 
