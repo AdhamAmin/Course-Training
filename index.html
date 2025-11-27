@@ -178,24 +178,6 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header-placeholder').innerHTML = data;
-                // Highlight active nav link based on current page
-                const navLinks = document.querySelectorAll('#header-placeholder .nav-link');
-                navLinks.forEach(link => {
-                    try {
-                        const linkHref = new URL(link.href);
-                        if (linkHref.pathname === location.pathname || linkHref.pathname === location.pathname.split('/').pop()) {
-                            link.classList.add('active');
-                            link.setAttribute('aria-current', 'page');
-                        }
-                    } catch (e) {
-                        // fallback for relative links
-                        const href = link.getAttribute('href');
-                        if (href && (href === location.pathname || href === location.pathname.split('/').pop() || (location.pathname === '/' && href === 'index.html'))) {
-                            link.classList.add('active');
-                            link.setAttribute('aria-current', 'page');
-                        }
-                    }
-                });
             })
             .catch(error => console.error('Error loading header:', error));
 
@@ -206,32 +188,6 @@
                 document.getElementById('footer-placeholder').innerHTML = data;
             })
             .catch(error => console.error('Error loading footer:', error));
-
-        // Scroll-trigger reveal for feature cards (adds .in-view when cards enter viewport)
-        (function () {
-            const cards = document.querySelectorAll('.feature-card');
-            if (!cards || cards.length === 0) return;
-
-            function revealAll() {
-                cards.forEach(c => c.classList.add('in-view'));
-            }
-
-            if ('IntersectionObserver' in window) {
-                const io = new IntersectionObserver((entries, obs) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('in-view');
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                }, { root: null, rootMargin: '0px', threshold: 0.15 });
-
-                cards.forEach(c => io.observe(c));
-            } else {
-                // Fallback for older browsers: reveal all immediately
-                revealAll();
-            }
-        })();
 
         // Contact form handling
         const form = document.getElementById('contact-form');
