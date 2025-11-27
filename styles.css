@@ -715,6 +715,116 @@ body {
     }
 
     /* ===============================================
+       MOBILE NAV (drawer) — activated on screens smaller than 10.5 inches
+       Note: CSS 'in' unit maps to device CSS inches; fallback to max-width: 900px
+       =============================================== */
+    @media (max-width: 10.5in), (max-width: 900px) {
+        /* hide desktop nav list and show the toggle */
+        .nav-list {
+            display: none;
+        }
+
+        .nav-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            margin-left: var(--spacing-md);
+        }
+
+        .nav-toggle:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        .hamburger {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--dark-alt);
+            position: relative;
+        }
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 22px;
+            height: 2px;
+            background: var(--dark-alt);
+            transition: transform var(--transition-fast);
+        }
+        .hamburger::before { top: -7px; }
+        .hamburger::after { top: 7px; }
+
+        /* Drawer styles */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100%;
+            pointer-events: none;
+        }
+        .mobile-drawer .drawer-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .mobile-drawer .mobile-drawer-inner {
+            position: absolute;
+            top: 0;
+            left: -320px;
+            width: 320px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            padding: var(--spacing-2xl);
+            transition: transform var(--transition-normal);
+            transform: translateX(0);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            pointer-events: auto;
+        }
+
+        .mobile-drawer.open {
+            pointer-events: auto;
+        }
+        .mobile-drawer.open .drawer-overlay { opacity: 1; }
+        .mobile-drawer.open .mobile-drawer-inner { transform: translateX(320px); }
+
+        .drawer-close {
+            background: transparent;
+            border: none;
+            font-size: 1.25rem;
+            align-self: flex-end;
+            cursor: pointer;
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        .mobile-nav-list .nav-link {
+            color: var(--dark);
+            font-size: 1.125rem;
+            padding: 0.5rem 0;
+        }
+    }
+
+    /* ===============================================
        ANIMATIONS & MOTION
        =============================================== */
 
