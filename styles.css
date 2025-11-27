@@ -1,7 +1,4 @@
-/* ===============================================
-   CSS RESET & BASE STYLES
-   =============================================== */
-
+﻿/*CSS RESET & BASE STYLES*/
 * {
     margin: 0;
     padding: 0;
@@ -19,10 +16,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ===============================================
-   CSS VARIABLES & DESIGN SYSTEM
-   =============================================== */
-
+/*CSS VARIABLES & DESIGN SYSTEM*/
 :root {
     /* Color Palette */
     --primary: #7c3aed;
@@ -79,25 +73,20 @@ body {
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-/* ===============================================
-   UTILITY CLASSES
-   =============================================== */
-
+/*UTILITY CLASSES*/
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
 }
 
-/* ===============================================
-   HEADER & NAVIGATION
-   =============================================== */
-
+/*HEADER & NAVIGATION*/
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    height: 60px; /* compact height */
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
@@ -109,7 +98,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--spacing-sm) 0;
+    height: 100%;
+    padding: 0 var(--spacing-md);
 }
 
 .logo h1 {
@@ -132,15 +122,16 @@ body {
     text-decoration: none;
     color: var(--dark-alt);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 1rem;
     transition: var(--transition-fast);
     position: relative;
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
 }
 
 .nav-link::after {
     content: '';
-    position: absolute;
+    position: relative;
+    top:2;
     bottom: 0;
     left: 0;
     width: 0;
@@ -163,9 +154,50 @@ body {
     border-radius: var(--radius-sm);
 }
 
-/* ===============================================
-   HERO SECTION
-   =============================================== */
+/* Hamburger icon */
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--dark-alt);
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    .header {
+        height: 70px; /* taller for touch targets */
+    }
+
+    .logo h1 {
+        font-size: 1.4rem; /* smaller logo text */
+    }
+
+    .nav-list {
+        max-height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        background: var(--white);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 220px;
+        padding: 0 var(--spacing-md);
+        box-shadow: var(--shadow-md);
+        border-radius: var(--radius-md);
+        transition: max-height var(--transition-slow), padding var(--transition-slow);
+    }
+
+    .nav.open .nav-list {
+        max-height: 500px; /* enough to show all links */
+        padding: var(--spacing-md);
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+/*HERO SECTION*/
 
 .hero {
     position: relative;
@@ -175,7 +207,7 @@ body {
     justify-content: center;
     background: var(--gradient-hero);
     overflow: hidden;
-    margin-top: 70px;
+    margin-top: 60px;
 }
 
 .hero::before {
@@ -293,9 +325,7 @@ body {
     outline-offset: 4px;
 }
 
-/* ===============================================
-   FEATURES SECTION
-   =============================================== */
+/*FEATURES SECTION*/
 
 .features {
     padding: var(--spacing-3xl) 0;
@@ -389,9 +419,7 @@ body {
     font-size: 1rem;
 }
 
-/* ===============================================
-   ABOUT SECTION
-   =============================================== */
+/*about section*/
 
 .about {
     padding: var(--spacing-3xl) 0;
@@ -449,9 +477,7 @@ body {
     margin-top: var(--spacing-xs);
 }
 
-/* ===============================================
-   CONTACT FORM SECTION
-   =============================================== */
+/*CONTACT FORM SECTION*/
 
 .contact-section {
     padding: var(--spacing-3xl) 0;
@@ -579,9 +605,7 @@ body {
     border-left: 4px solid #dc2626;
 }
 
-/* ===============================================
-   FOOTER
-   =============================================== */
+/*FOOTER*/
 
 .footer {
     background: var(--dark);
@@ -685,9 +709,7 @@ body {
     font-size: 0.875rem;
 }
 
-/* ===============================================
-   ACCESSIBILITY IMPROVEMENTS
-   =============================================== */
+/*ACCESSIBILITY IMPROVEMENTS*/
 
 /* Focus visible for keyboard navigation */
 *:focus-visible {
