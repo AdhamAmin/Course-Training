@@ -558,115 +558,115 @@ body {
     transform: translateX(3px);
 }
 
-.footer-title {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 800;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: var(--spacing-sm);
-}
+    .footer-title {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: var(--spacing-sm);
+    }
 
-.footer-heading {
-    font-family: var(--font-display);
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: var(--spacing-sm);
-}
+    .footer-heading {
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: var(--spacing-sm);
+    }
 
-.footer-text {
-    color: var(--gray-light);
-    line-height: 1.6;
-}
+    .footer-text {
+        color: var(--gray-light);
+        line-height: 1.6;
+    }
 
-.footer-links,
-.footer-contact {
-    list-style: none;
-    line-height: 2;
-}
+    .footer-links,
+    .footer-contact {
+        list-style: none;
+        line-height: 2;
+    }
 
-.footer-link {
-    color: var(--gray-lighter);
-    text-decoration: none;
-    transition: var(--transition-fast);
-}
+    .footer-link {
+        color: var(--gray-lighter);
+        text-decoration: none;
+        transition: var(--transition-fast);
+    }
 
-.footer-link:hover {
-    color: var(--primary-light);
-}
+    .footer-link:hover {
+        color: var(--primary-light);
+    }
 
-.footer-link:focus {
-    outline: 2px solid var(--primary-light);
-    outline-offset: 2px;
-    border-radius: var(--radius-sm);
-}
+    .footer-link:focus {
+        outline: 2px solid var(--primary-light);
+        outline-offset: 2px;
+        border-radius: var(--radius-sm);
+    }
 
-.social-links {
-    display: flex;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-sm);
-}
+    .social-links {
+        display: flex;
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-sm);
+    }
 
-.social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    color: var(--white);
-    transition: all var(--transition-normal);
-    text-decoration: none;
-}
+    .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-md);
+        color: var(--white);
+        transition: all var(--transition-normal);
+        text-decoration: none;
+    }
 
-.social-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
-}
+    .social-link:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+    }
 
-.social-link:focus {
-    outline: 2px solid var(--primary-light);
-    outline-offset: 2px;
-}
+    .social-link:focus {
+        outline: 2px solid var(--primary-light);
+        outline-offset: 2px;
+    }
 
-.footer-bottom {
-    text-align: center;
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--gray-light);
-    font-size: 0.875rem;
-}
+    .footer-bottom {
+        text-align: center;
+        padding-top: var(--spacing-lg);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--gray-light);
+        font-size: 0.875rem;
+    }
 
-/* ===============================================
+    /* ===============================================
    ACCESSIBILITY IMPROVEMENTS
    =============================================== */
 
-/* Focus visible for keyboard navigation */
-*:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 3px;
-}
-
-/* Reduced motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    /* Focus visible for keyboard navigation */
+    *:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 3px;
     }
-}
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    :root {
-        --primary: #5b21b6;
-        --dark: #000000;
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
     }
-}
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+        :root {
+            --primary: #5b21b6;
+            --dark: #000000;
+        }
+    }
