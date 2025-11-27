@@ -131,27 +131,6 @@ html {
     outline: 2px solid var(--primary);
     outline-offset: 4px;
     border-radius: var(--radius-sm);
-}
-
-/* ===============================================
-   HERO SECTION
-   =============================================== */
-
-.hero {
-    position: relative;
-
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
