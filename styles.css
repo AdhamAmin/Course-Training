@@ -683,6 +683,98 @@ body {
     }
 
     /* ===============================================
+       ANIMATIONS & MOTION
+       =============================================== */
+
+    /* Simple fade-in used for footer and general reveals */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Reuse fadeInUp for cards (defined earlier) but also provide a shorter variant */
+    @keyframes fadeInUpShort {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Feature cards entrance: staggered, subtle lift */
+    .features-grid .feature-card {
+        opacity: 0;
+        transform: translateY(12px);
+        animation-name: fadeInUpShort;
+        animation-duration: 0.8s;
+        animation-fill-mode: both;
+        animation-timing-function: cubic-bezier(.2,.9,.3,1);
+    }
+
+    .features-grid .feature-card:nth-child(1) {
+        animation-delay: 0.15s;
+    }
+    .features-grid .feature-card:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+    .features-grid .feature-card:nth-child(3) {
+        animation-delay: 0.45s;
+    }
+
+    /* Footer reveal */
+    .footer {
+        opacity: 0;
+        animation: fadeIn 0.9s ease both;
+        animation-delay: 0.2s;
+    }
+
+    /* Logo hover micro-interaction */
+    .logo-link h1,
+    .footer-logo .footer-title {
+        transition: transform var(--transition-normal), filter var(--transition-normal);
+    }
+    .logo-link:hover h1,
+    .footer-logo:hover .footer-title {
+        transform: translateY(-2px) scale(1.02);
+        filter: drop-shadow(0 6px 14px rgba(0,0,0,0.08));
+    }
+
+    /* CTA subtle pulse on focus to aid keyboard users */
+    .cta-button:focus {
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.12);
+    }
+
+    /* Social link hover expanded feedback */
+    .social-link {
+        transition: transform var(--transition-normal), background var(--transition-normal), color var(--transition-normal);
+    }
+    .social-link:hover {
+        transform: translateY(-4px) scale(1.02);
+    }
+
+    /* Respect user reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+        .features-grid .feature-card,
+        .footer,
+        .logo-link h1,
+        .cta-button,
+        .social-link {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            transform: none !important;
+            opacity: 1 !important;
+        }
+    }
+
+    /* ===============================================
    ACCESSIBILITY IMPROVEMENTS
    =============================================== */
 
