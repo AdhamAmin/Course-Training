@@ -709,6 +709,7 @@ body {
     }
 
     /* Feature cards entrance: staggered, subtle lift */
+    /* Feature cards start hidden and will animate when the `in-view` class is added by JS */
     .features-grid .feature-card {
         opacity: 0;
         transform: translateY(12px);
@@ -716,6 +717,12 @@ body {
         animation-duration: 0.8s;
         animation-fill-mode: both;
         animation-timing-function: cubic-bezier(.2,.9,.3,1);
+        animation-play-state: paused;
+    }
+
+    /* When a card becomes visible, play its entrance animation */
+    .features-grid .feature-card.in-view {
+        animation-play-state: running;
     }
 
     .features-grid .feature-card:nth-child(1) {
