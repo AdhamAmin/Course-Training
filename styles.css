@@ -12,88 +12,6 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    line-height: 1.6;
-    color: #2d3748;
-    overflow-x: hidden;
-    font-size: clamp(14px, 1.2vw + 0.2rem, 16px);
-}
-
-/* ===============================================
-   CSS VARIABLES & DESIGN SYSTEM
-   =============================================== */
-
-:root {
-    /* Color Palette */
-    --primary: #7c3aed;
-    --primary-dark: #5b21b6;
-    --primary-light: #a78bfa;
-    --secondary: #3b82f6;
-    --secondary-dark: #1e40af;
-    --accent: #ec4899;
-    --success: #10b981;
-
-    /* Neutrals */
-    --dark: #1a202c;
-    --dark-alt: #2d3748;
-    --gray: #4a5568;
-    --gray-light: #718096;
-    --gray-lighter: #e2e8f0;
-    --white: #ffffff;
-    --off-white: #f7fafc;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    --gradient-overlay: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.85) 100%);
-
-    /* Typography */
-    --font-primary: 'Inter', sans-serif;
-    --font-display: 'Outfit', sans-serif;
-
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-    --spacing-2xl: 4rem;
-    --spacing-3xl: 6rem;
-
-    /* Border Radius */
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.5rem;
-
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-/* ===============================================
-   UTILITY CLASSES
-   =============================================== */
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-}
-
-/* ===============================================
-   HEADER & NAVIGATION
-   =============================================== */
-
 .header {
     position: fixed;
     top: 0;
@@ -222,6 +140,8 @@ body {
 .hero {
     position: relative;
     min-height: 100vh;
+    min-height: 100dvh;
+    /* Better mobile support */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,7 +208,8 @@ body {
 
 .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 8vw, 4rem);
+    /* Adjusted for better scaling */
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: var(--spacing-md);
@@ -375,14 +296,15 @@ body {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-lg);
     align-items: start;
 }
 
 .feature-card {
     flex: 1;
-    min-width: 280px;
+    min-width: 0;
+    /* Allow flex items to shrink below content size */
     background: var(--white);
     padding: var(--spacing-xl);
     border-radius: var(--radius-xl);
@@ -610,351 +532,403 @@ body {
     transform: translateX(3px);
 }
 
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-xl);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-xl);
+}
+
+.footer-section {
+    flex: 1 1 240px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-heading {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-text {
+    color: var(--gray-light);
+    line-height: 1.6;
+}
+
+.footer-links,
+.footer-contact {
+    list-style: none;
+    line-height: 2;
+}
+
+.footer-link {
+    color: var(--gray-lighter);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.footer-link:hover {
+    color: var(--primary-light);
+}
+
+.footer-link:focus {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--white);
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    font-size: 0;
+}
+
+.social-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.social-link:focus {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    fill: currentColor;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--gray-light);
+    font-size: 0.875rem;
+}
+
+/* Responsive footer: stack sections on narrow screens */
+@media (max-width: 720px) {
     .footer-content {
-        display: flex;
-        justify-content: space-between;
-        gap: var(--spacing-xl);
-        flex-wrap: wrap;
-        margin-bottom: var(--spacing-xl);
-    }
-
-    .footer-section {
-        flex: 1 1 240px;
-        min-width: 200px;
-        display: flex;
         flex-direction: column;
-        gap: var(--spacing-sm);
-    }
-
-    .footer-title {
-        font-family: var(--font-display);
-        font-size: 1.5rem;
-        font-weight: 800;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: var(--spacing-sm);
-    }
-
-    .footer-heading {
-        font-family: var(--font-display);
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: var(--white);
-        margin-bottom: var(--spacing-sm);
-    }
-
-    .footer-text {
-        color: var(--gray-light);
-        line-height: 1.6;
-    }
-
-    .footer-links,
-    .footer-contact {
-        list-style: none;
-        line-height: 2;
-    }
-
-    .footer-link {
-        color: var(--gray-lighter);
-        text-decoration: none;
-        transition: var(--transition-fast);
-    }
-
-    .footer-link:hover {
-        color: var(--primary-light);
-    }
-
-    .footer-link:focus {
-        outline: 2px solid var(--primary-light);
-        outline-offset: 2px;
-        border-radius: var(--radius-sm);
-    }
-
-    .social-links {
-        display: flex;
         gap: var(--spacing-md);
-        margin-top: var(--spacing-sm);
     }
 
-    .social-link {
-        display: flex;
+    .page-content {
+        padding-top: 110px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.25rem;
+        /* Fallback/Specific size for very small screens */
+    }
+
+    .cta-button {
+        width: 100%;
+        text-align: center;
+        padding: 0.875rem 1.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        /* Stack on very small screens */
+    }
+}
+
+/* ===============================================
+       MOBILE NAV (drawer) — activated on screens smaller than 10.5 inches
+       Note: CSS 'in' unit maps to device CSS inches; fallback to max-width: 900px
+       =============================================== */
+@media (max-width: 10.5in),
+(max-width: 900px) {
+
+    /* hide desktop nav list and show the toggle */
+    .nav-list {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         width: 44px;
         height: 44px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: var(--radius-md);
-        color: var(--white);
-        transition: all var(--transition-normal);
-        text-decoration: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        margin-left: var(--spacing-md);
     }
 
-    .social-link:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-3px);
-    }
-
-    .social-link:focus {
-        outline: 2px solid var(--primary-light);
-        outline-offset: 2px;
-    }
-
-    .footer-bottom {
-        text-align: center;
-    .social-link svg {
-        width: 20px;
-        height: 20px;
-        display: block;
-        fill: currentColor;
-    }
-        padding-top: var(--spacing-lg);
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-        color: var(--gray-light);
-        font-size: 0.875rem;
-    }
-
-    /* Responsive footer: stack sections on narrow screens */
-    @media (max-width: 720px) {
-        .footer-content {
-            flex-direction: column;
-            gap: var(--spacing-md);
-        }
-        .page-content {
-            padding-top: 110px;
-        }
-    }
-
-    /* ===============================================
-       MOBILE NAV (drawer) — activated on screens smaller than 10.5 inches
-       Note: CSS 'in' unit maps to device CSS inches; fallback to max-width: 900px
-       =============================================== */
-    @media (max-width: 10.5in), (max-width: 900px) {
-        /* hide desktop nav list and show the toggle */
-        .nav-list {
-            display: none;
-        }
-
-        .nav-toggle {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            margin-left: var(--spacing-md);
-        }
-
-        .nav-toggle:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 3px;
-        }
-
-        .hamburger {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--dark-alt);
-            position: relative;
-        }
-        .hamburger::before,
-        .hamburger::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 22px;
-            height: 2px;
-            background: var(--dark-alt);
-            transition: transform var(--transition-fast);
-        }
-        .hamburger::before { top: -7px; }
-        .hamburger::after { top: 7px; }
-
-        /* Drawer styles */
-        .mobile-drawer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 100%;
-            pointer-events: none;
-        }
-        .mobile-drawer .drawer-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.4);
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-        }
-
-        .mobile-drawer .mobile-drawer-inner {
-                position: absolute;
-                top: 0;
-                left: -280px;
-                width: 280px;
-                height: 100vh;
-                background: var(--white);
-                box-shadow: 0 18px 36px rgba(0,0,0,0.14);
-                padding: var(--spacing-2xl);
-                transition: transform 0.36s cubic-bezier(.16,.84,.2,1);
-                transform: translateX(0);
-                display: flex;
-                flex-direction: column;
-                gap: var(--spacing-md);
-                pointer-events: auto;
-            }
-
-        .mobile-drawer.open {
-            pointer-events: auto;
-        }
-        .mobile-drawer.open .drawer-overlay { opacity: 1; }
-        .mobile-drawer.open .mobile-drawer-inner { transform: translateX(280px); }
-
-        .drawer-close {
-            background: transparent;
-            border: none;
-            font-size: 1.25rem;
-            align-self: flex-end;
-            cursor: pointer;
-        }
-
-        .mobile-nav-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-md);
-        }
-        .mobile-nav-list .nav-link {
-            color: var(--dark);
-            font-size: 1.125rem;
-            padding: 0.5rem 0;
-        }
-    }
-
-    /* ===============================================
-       ANIMATIONS & MOTION
-       =============================================== */
-
-    /* Simple fade-in used for footer and general reveals */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    /* Reuse fadeInUp for cards (defined earlier) but also provide a shorter variant */
-    @keyframes fadeInUpShort {
-        from {
-            opacity: 0;
-            transform: translateY(12px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Feature cards entrance: staggered, subtle lift */
-    /* Feature cards start hidden and will animate when the `in-view` class is added by JS */
-    .features-grid .feature-card {
-        opacity: 0;
-        transform: translateY(12px);
-        animation-name: fadeInUpShort;
-        animation-duration: 0.8s;
-        animation-fill-mode: both;
-        animation-timing-function: cubic-bezier(.16,.84,.2,1);
-        animation-play-state: paused;
-    }
-
-    /* When a card becomes visible, play its entrance animation */
-    .features-grid .feature-card.in-view {
-        animation-play-state: running;
-    }
-
-    .features-grid .feature-card:nth-child(1) { animation-delay: 0.12s; }
-    .features-grid .feature-card:nth-child(2) { animation-delay: 0.24s; }
-    .features-grid .feature-card:nth-child(3) { animation-delay: 0.36s; }
-
-    /* Footer reveal */
-    .footer {
-        opacity: 0;
-        animation: fadeIn 0.9s ease both;
-        animation-delay: 0.2s;
-    }
-
-    /* Logo hover micro-interaction */
-    .logo-link h1,
-    .footer-logo .footer-title {
-        transition: transform var(--transition-normal), filter var(--transition-normal);
-    }
-    .logo-link:hover h1,
-    .footer-logo:hover .footer-title {
-        transform: translateY(-2px) scale(1.02);
-        filter: drop-shadow(0 6px 14px rgba(0,0,0,0.08));
-    }
-
-    /* CTA subtle pulse on focus to aid keyboard users */
-    .cta-button:focus {
-        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.12);
-    }
-
-    /* Social link hover expanded feedback */
-    .social-link {
-        transition: transform var(--transition-normal), background var(--transition-normal), color var(--transition-normal);
-    }
-    .social-link:hover {
-        transform: translateY(-4px) scale(1.02);
-    }
-
-    /* Respect user reduced-motion preference */
-    @media (prefers-reduced-motion: reduce) {
-        .features-grid .feature-card,
-        .footer,
-        .logo-link h1,
-        .cta-button,
-        .social-link {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            transform: none !important;
-            opacity: 1 !important;
-        }
-    }
-
-    /* ===============================================
-   ACCESSIBILITY IMPROVEMENTS
-   =============================================== */
-
-    /* Focus visible for keyboard navigation */
-    *:focus-visible {
+    .nav-toggle:focus {
         outline: 2px solid var(--primary);
         outline-offset: 3px;
     }
 
-    /* Reduced motion for accessibility */
-    @media (prefers-reduced-motion: reduce) {
-
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
+    .hamburger {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--dark-alt);
+        position: relative;
     }
 
-    /* High contrast mode support */
-    @media (prefers-contrast: high) {
-        :root {
-            --primary: #5b21b6;
-            --dark: #000000;
-        }
+    .hamburger::before,
+    .hamburger::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 22px;
+        height: 2px;
+        background: var(--dark-alt);
+        transition: transform var(--transition-fast);
     }
+
+    .hamburger::before {
+        top: -7px;
+    }
+
+    .hamburger::after {
+        top: 7px;
+    }
+
+    /* Drawer styles */
+    .mobile-drawer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        pointer-events: none;
+    }
+
+    .mobile-drawer .drawer-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+    }
+
+    .mobile-drawer .mobile-drawer-inner {
+        position: absolute;
+        top: 0;
+        left: -280px;
+        width: 280px;
+        height: 100vh;
+        background: var(--white);
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.14);
+        padding: var(--spacing-2xl);
+        transition: transform 0.36s cubic-bezier(.16, .84, .2, 1);
+        transform: translateX(0);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        pointer-events: auto;
+    }
+
+    .mobile-drawer.open {
+        pointer-events: auto;
+    }
+
+    .mobile-drawer.open .drawer-overlay {
+        opacity: 1;
+    }
+
+    .mobile-drawer.open .mobile-drawer-inner {
+        transform: translateX(280px);
+    }
+
+    .drawer-close {
+        background: transparent;
+        border: none;
+        font-size: 1.25rem;
+        align-self: flex-end;
+        cursor: pointer;
+    }
+
+    .mobile-nav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .mobile-nav-list .nav-link {
+        color: var(--dark);
+        font-size: 1.125rem;
+        padding: 0.5rem 0;
+    }
+}
+
+/* ===============================================
+       ANIMATIONS & MOTION
+       =============================================== */
+
+/* Simple fade-in used for footer and general reveals */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Reuse fadeInUp for cards (defined earlier) but also provide a shorter variant */
+@keyframes fadeInUpShort {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Feature cards entrance: staggered, subtle lift */
+/* Feature cards start hidden and will animate when the `in-view` class is added by JS */
+.features-grid .feature-card {
+    opacity: 0;
+    transform: translateY(12px);
+    animation-name: fadeInUpShort;
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(.16, .84, .2, 1);
+    animation-play-state: paused;
+}
+
+/* When a card becomes visible, play its entrance animation */
+.features-grid .feature-card.in-view {
+    animation-play-state: running;
+}
+
+.features-grid .feature-card:nth-child(1) {
+    animation-delay: 0.12s;
+}
+
+.features-grid .feature-card:nth-child(2) {
+    animation-delay: 0.24s;
+}
+
+.features-grid .feature-card:nth-child(3) {
+    animation-delay: 0.36s;
+}
+
+/* Footer reveal */
+.footer {
+    opacity: 0;
+    animation: fadeIn 0.9s ease both;
+    animation-delay: 0.2s;
+}
+
+/* Logo hover micro-interaction */
+.logo-link h1,
+.footer-logo .footer-title {
+    transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+.logo-link:hover h1,
+.footer-logo:hover .footer-title {
+    transform: translateY(-2px) scale(1.02);
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));
+}
+
+/* CTA subtle pulse on focus to aid keyboard users */
+.cta-button:focus {
+    box-shadow: 0 8px 30px rgba(124, 58, 237, 0.12);
+}
+
+/* Social link hover expanded feedback */
+.social-link {
+    transition: transform var(--transition-normal), background var(--transition-normal), color var(--transition-normal);
+}
+
+.social-link:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* Respect user reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+    .features-grid .feature-card,
+    .footer,
+    .logo-link h1,
+    .cta-button,
+    .social-link {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* ===============================================
+   ACCESSIBILITY IMPROVEMENTS
+   =============================================== */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary: #5b21b6;
+        --dark: #000000;
+    }
+}
