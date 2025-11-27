@@ -55,7 +55,7 @@ fetch('includes/footer.html')
                         obs.unobserve(entry.target);
                     }
                 });
-            }, { root: null, rootMargin: '0px', threshold: 0.15 });
+            }, { root: null, rootMargin: '0px', threshold: 0.05 });
 
             cards.forEach(c => io.observe(c));
         } else {
@@ -69,6 +69,29 @@ fetch('includes/footer.html')
     } else {
         initReveal();
     }
+})();
+
+// add 'js-enabled' class to html for CSS fallbacks and close drawer on large screens
+(function () {
+    document.documentElement.classList.add('js-enabled');
+
+    const drawer = document.getElementById('mobile-drawer');
+    const toggle = document.querySelector('.nav-toggle');
+    if (!drawer || !toggle) return;
+
+    // matchMedia for large screens: close drawer when viewport becomes large
+    const mql = window.matchMedia('(min-width: 10.5in), (min-width: 900px)');
+    function handleChange(e) {
+        if (e.matches) {
+            // viewport is large — ensure drawer is closed
+            drawer.classList.remove('open');
+            drawer.setAttribute('aria-hidden', 'true');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    }
+    // initial check
+    try { handleChange(mql); } catch (e) {}
+    mql.addEventListener ? mql.addEventListener('change', handleChange) : mql.addListener(handleChange);
 })();
 
 // Mobile drawer toggle: open/close, overlay click, escape key
@@ -104,6 +127,13 @@ fetch('includes/footer.html')
 
         overlay && overlay.addEventListener('click', close);
         closeBtn && closeBtn.addEventListener('click', close);
+
+        // Close drawer when a mobile nav link is clicked (so navigation happens)
+        const mobileNavLinks = drawer.querySelectorAll('.mobile-nav-list .nav-link');
+        mobileNavLinks.forEach(link => link.addEventListener('click', () => {
+            // allow normal navigation, but close drawer immediately
+            close();
+        }));
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && drawer.classList.contains('open')) close();
