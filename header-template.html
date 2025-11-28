@@ -1,0 +1,60 @@
+<!-- Header Section -->
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <h1><a href="index.html" class="logo">Wanderlux</a></h1>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav" id="menu" role="navigation" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="features.html" class="nav-link">Features</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburger icon -->
+            <div class="hamburger" id="hamburger-menu">☰</div>
+        </div>
+    </div>
+</header>
+
+<script>
+    // Toggle menu function
+    function toggleMenu() {
+        const nav = document.getElementById("menu");
+        if (nav) {
+            nav.classList.toggle("open");
+        }
+    }
+
+    // Initialize hamburger menu
+    function initializeHamburger() {
+        const hamburger = document.getElementById('hamburger-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', toggleMenu);
+        }
+    }
+
+    // Highlight active page in navigation
+    function highlightActivePage() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function () {
+        initializeHamburger();
+        highlightActivePage();
+    });
+</script>
