@@ -3,7 +3,7 @@
   <div class="container">
     <div class="header-content">
       <div class="logo">
-        <h1><a herf="index.html" class "logo">Wanderlux</a></h1>
+        <h1><a href="index.html" class="logo">Wanderlux</a></h1>
       </div>
 
       <!-- Navigation -->
@@ -17,14 +17,59 @@
       </nav>
 
       <!-- Hamburger icon -->
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <div class="hamburger" id="hamburger-menu">☰</div>
     </div>
   </div>
 </header>
 
 <script>
-function toggleMenu() {
-  const nav = document.getElementById("menu");
-  nav.classList.toggle("open");
-}
+  // Toggle menu function
+  function toggleMenu() {
+    const nav = document.getElementById("menu");
+    if (nav) {
+      nav.classList.toggle("open");
+    }
+  }
+
+  // Initialize hamburger menu - use setTimeout to wait for dynamic loading
+  function initializeHamburger() {
+    const hamburger = document.getElementById('hamburger-menu');
+    if (hamburger) {
+      hamburger.addEventListener('click', toggleMenu);
+      console.log('Hamburger menu initialized');
+    } else {
+      // If not found, try again after a short delay
+      setTimeout(initializeHamburger, 100);
+    }
+  }
+
+  // Highlight active page in navigation
+  function highlightActivePage() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (navLinks.length > 0) {
+      navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+    } else {
+      // If nav links not found, try again after a short delay
+      setTimeout(highlightActivePage, 100);
+    }
+  }
+
+  // Start initialization when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      initializeHamburger();
+      highlightActivePage();
+    });
+  } else {
+    // DOM already loaded
+    initializeHamburger();
+    highlightActivePage();
+  }
 </script>
